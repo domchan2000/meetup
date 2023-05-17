@@ -23,6 +23,30 @@ function MeetupItem(props) {
     }
   }
 
+  function deleteHandler() {
+    fetch(
+      `https://meetup-b9b58-default-rtdb.firebaseio.com/meetups/${props.id}.json`, {
+        method: 'DELETE',
+        headers: {
+          body: JSON.stringify(props),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      }
+    ).then(response => {
+     if (response.ok) {
+          window.alert('Data deleted successfully.');
+          window.location.reload();
+        } else {
+          throw new Error('Failed to delete data.');
+        }
+      })
+      .catch(error => {
+        window.alert('Error deleting data: ' + error.message);
+      });
+  }
+
   return (
     <li className={classes.item}>
       <Card>
@@ -36,6 +60,9 @@ function MeetupItem(props) {
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
+        </div>
+        <div className={classes.actions}>
+          <button onClick={()=>deleteHandler('dataIdToDelete')}>Delete Data</button>
         </div>
       </Card>
     </li>
