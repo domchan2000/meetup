@@ -37,10 +37,16 @@ function AllMeetupsPage() {
     );
   }
 
+  const isMeetupsEmpty = loadedMeetups.length === 0;
+
   return (
     <div>
       <h1>All Meetups</h1>
-      <MeetupList meetups={loadedMeetups} />
+      {isMeetupsEmpty ? (
+        <p>No meetups found</p>
+      ) : (
+        <MeetupList meetups={loadedMeetups} />
+      )}
     </div>
   );
 }

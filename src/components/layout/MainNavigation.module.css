@@ -3,15 +3,20 @@
     height: 5rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #77002e;
-    padding: 0 10%;
+    padding: 10px;
   }
   
   .logo {
     font-size: 2rem;
+    display: flex;
     color: white;
     font-weight: bold;
+    align-items: center;
+    height: auto;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   
   .header ul {
@@ -19,11 +24,12 @@
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: baseline;
+    /* align-items: baseline; */
   }
   
   .header li {
-    margin-left: 3rem;
+    /* margin-left: 3rem; */
+    margin-right: 30px;
   }
   
   .header a {
