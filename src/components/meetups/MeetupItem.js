@@ -60,8 +60,6 @@ function MeetupItem(props) {
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
-        </div>
-        <div className={classes.actions}>
           <button onClick={()=>deleteHandler('dataIdToDelete')}>Delete Data</button>
         </div>
       </Card>
