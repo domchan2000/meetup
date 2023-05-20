@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db, auth } from "../store/firebase.js";
 
 const FavoritesContext = createContext({
   favorites: [],
@@ -10,6 +12,44 @@ const FavoritesContext = createContext({
 
 export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
+  const user = auth.currentUser;
+
+  
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      if (user) {
+        try {
+          const userDocRef = doc(db, "users", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            setUserFavorites(userData.favorites || []);
+          }
+        } catch (error) {
+          console.error("Error fetching favorites:", error);
+        }
+      }
+    };
+
+    fetchFavorites();
+  }, [user]);
+
+  useEffect(() => {
+    const saveFavorites = async () => {
+      if (user) {
+        try {
+          const userDocRef = doc(db, "users", user.uid);
+          await setDoc(userDocRef, { favorites: userFavorites });
+        } catch (error) {
+          console.error("Error saving favorites:", error);
+        }
+      }
+    };
+
+    saveFavorites();
+  }, [user, userFavorites]);
+
 
   function addFavoriteHandler(favoriteMeetup) {
     setUserFavorites((prevUserFavorites) => {

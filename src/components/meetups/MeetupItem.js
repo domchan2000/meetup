@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import FavoritesContext from "../../store/favourites-context";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db, auth } from "../../store/firebase.js";
 
 import Card from "../UI/Card";
 import classes from "./MeetupItem.module.css";
@@ -24,23 +26,14 @@ function MeetupItem(props) {
   }
 
   function deleteHandler() {
-    fetch(
-      `https://meetup-b9b58-default-rtdb.firebaseio.com/meetups/${props.id}.json`, {
-        method: 'DELETE',
-        headers: {
-          body: JSON.stringify(props),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      }
-    ).then(response => {
-     if (response.ok) {
-          window.alert('Data deleted successfully.');
-          window.location.reload();
-        } else {
-          throw new Error('Failed to delete data.');
-        }
+    const userId = auth.currentUser.uid;
+
+    const meetupRef = doc(db, `users/${userId}/meetups/${props.id}`);
+  
+    deleteDoc(meetupRef)
+      .then(() => {
+        window.alert('Data deleted successfully.');
+        window.location.reload();
       })
       .catch(error => {
         window.alert('Error deleting data: ' + error.message);

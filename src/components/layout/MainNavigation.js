@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { logout } from "../../store/firebase";
+
 
 import classes from './MainNavigation.module.css';
 import FavoritesContext from '../../store/favourites-context';
@@ -13,7 +15,7 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link to='/'>All Meetups</Link>
+            <Link to='/all'>All Meetups</Link>
           </li>
           <li>
             <Link to='/new-meetup'>Add New Meetup</Link>
@@ -24,6 +26,11 @@ function MainNavigation() {
               <span className={classes.badge}>
                 {favoritesCtx.totalFavorites}
               </span>
+            </Link>
+          </li>
+          <li>
+            <Link to='/'>            
+              <button className="dashboard__btn" onClick={logout}>Logout</button>
             </Link>
           </li>
         </ul>

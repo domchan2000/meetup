@@ -1,23 +1,27 @@
 import {useNavigate} from 'react-router-dom'
+import { collection, addDoc} from "firebase/firestore";
+import { auth,db } from '../store/firebase'
+
 
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
 
 function NewMeetupPage() {
+
   const navigate = useNavigate();
-  function addMeetupHandler(meetupData) {
-    fetch(
-      "https://meetup-b9b58-default-rtdb.firebaseio.com/meetups.json",
-      {
-        method: "POST",
-        body: JSON.stringify(meetupData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then(() => {
-      navigate('/');
-    });
-  }
+
+  const addMeetupHandler = async (meetupData) => {
+    try {
+      const user = auth.currentUser;
+      const userId = user.uid;
+      meetupData['userId'] = userId;
+
+      await addDoc(collection(db, `users/${userId}/meetups`), meetupData);
+      console.log(user);
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding meetup:", error);
+    }
+  };
 
   return (
     <section>
