@@ -10,8 +10,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #77002e;
+    background-color: #5c3025;
     padding: 10px, 0;
+    
   }
   
   .logo {
@@ -34,14 +35,14 @@
   }
   
   .header li {
-    /* margin-left: 3rem; */
-    margin-right: 30px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
   
   .header a {
     text-decoration: none;
     font-size: 1.5rem;
-    color: #fcb8d2;
+    color: wheat;
   }
   
   .header a:hover,
@@ -51,9 +52,10 @@
   }
   
   .badge {
-    background-color: #cc2062;
+    background-color: #ffc4009c;
     color: white;
     border-radius: 12px;
     padding: 0 1rem;
     margin-left: 0.5rem;
+    
   }

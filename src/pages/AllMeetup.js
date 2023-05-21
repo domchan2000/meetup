@@ -66,7 +66,7 @@ useEffect(() => {
     <section>
       <h1>All Meetups</h1>
       {isMeetupsEmpty ? (
-        <p>No meetups found</p>
+        <h2>No meetups found</h2>
       ) : (
         <MeetupList meetups={loadedMeetups} />
       )}

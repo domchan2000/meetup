@@ -29,19 +29,19 @@ function NewMeetupForm(props) {
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="title">Meetup title</label>
+          <label htmlFor="title">Where is the meeting place?</label>
           <input type="text" required id="titel" ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="image">Meetup title</label>
+          <label htmlFor="image">Do you have an image of that location?</label>
           <input type="url" id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="address">Meetup title</label>
+          <label htmlFor="address">What is the address of the meething place?</label>
           <input type="text" required id="address" ref={addressInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="description">Meetup title</label>
+          <label htmlFor="description">Date, time and description</label>
           <textarea
             id="description"
             required
@@ -49,7 +49,7 @@ function NewMeetupForm(props) {
             ref={descriptionInputRef}
           ></textarea>
         </div>
-        <div className={classes.action}>
+        <div className={classes.actions}>
           <button>Add Meetup</button>
         </div>
       </form>

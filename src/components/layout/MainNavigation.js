@@ -4,10 +4,10 @@ import { logout } from "../../store/firebase";
 
 
 import classes from './MainNavigation.module.css';
-import FavoritesContext from '../../store/favourites-context';
+import ImportantContext from '../../store/important-context';
 
 function MainNavigation() {
-  const favoritesCtx = useContext(FavoritesContext);
+  const importantCtx = useContext(ImportantContext);
 
   return (
     <header className={classes.header}>
@@ -21,17 +21,15 @@ function MainNavigation() {
             <Link to='/new-meetup'>Add New Meetup</Link>
           </li>
           <li>
-            <Link to='/favorites'>
-              My Favorites
+            <Link to='/important'>
+              My Importants
               <span className={classes.badge}>
-                {favoritesCtx.totalFavorites}
+                {importantCtx.totalImportant}
               </span>
             </Link>
           </li>
           <li>
-            <Link to='/'>            
-              <a onClick={logout}>Logout</a>
-            </Link>
+            <Link to="/" onClick={logout}>Logout</Link>
           </li>
         </ul>
       </nav>

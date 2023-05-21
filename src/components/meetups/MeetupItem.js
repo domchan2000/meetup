@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import FavoritesContext from "../../store/favourites-context";
+import ImportantContext from "../../store/important-context";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../../store/firebase.js";
 
@@ -7,20 +7,21 @@ import Card from "../UI/Card";
 import classes from "./MeetupItem.module.css";
 
 function MeetupItem(props) {
-  const favoritesCtx = useContext(FavoritesContext);
+  const importantCtx = useContext(ImportantContext);
 
-  const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
+  const itemIsImportant = importantCtx.itemIsImportant(props.id);
 
-  function toggleFavoriteStatusHandler() {
-    if (itemIsFavorite) {
-      favoritesCtx.removeFavorite(props.id);
+  function toggleImportantStatusHandler() {
+    if (itemIsImportant) {
+      importantCtx.removeImportant(props.id);
     } else {
-      favoritesCtx.addFavorite({
+      importantCtx.addImportant({
         id: props.id,
         title: props.title,
         description: props.description,
         image: props.image,
         address: props.address,
+        userId: auth.currentUser.uid
       });
     }
   }
@@ -32,9 +33,9 @@ function MeetupItem(props) {
   
     try {
       await deleteDoc(meetupRef);
-      // Remove the meetup from favorites as well
-      if (itemIsFavorite) {
-        favoritesCtx.removeFavorite(props.id);
+      // Remove the meetup from important as well
+      if (itemIsImportant) {
+        importantCtx.removeImportant(props.id);
       }
     } catch (error) {
       window.alert('Error deleting data: ' + error.message);
@@ -54,7 +55,7 @@ function MeetupItem(props) {
           <p>{props.description}</p>
         </div>
         <div className={classes.actions}>
-          <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}</button>
+          <button onClick={toggleImportantStatusHandler}>{itemIsImportant ? 'Remove from Important' : 'To Important'}</button>
           <button onClick={()=>deleteHandler('dataIdToDelete')}>Delete Data</button>
         </div>
       </Card>

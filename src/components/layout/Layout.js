@@ -1,25 +1,23 @@
 import MainNavigation from './MainNavigation';
 import classes from './Layout.module.css';
 import { useLocation } from 'react-router-dom';
-import Login from '../../pages/Login';
 
 
 function Layout(props) {
   const location = useLocation();
-  const showHeader = location.pathname !== '/';
+  const excludedRoutes = ['/register', '/reset', '/'];
+  const showHeader = !excludedRoutes.includes(location.pathname);
 
-    if (!showHeader) {
-      return (
-        <Login/>
-      );
-    }
-  
-  return (
-    <div>
-      <MainNavigation />
-      <main className={classes.main}>{props.children}</main>
-    </div>
-  );
+  if (showHeader) {
+    return (
+      <div>
+        <MainNavigation />
+        <main className={classes.main}>{props.children}</main>
+      </div>
+    );
+  }
+
+  return <>{props.children}</>;
 }
 
 export default Layout;

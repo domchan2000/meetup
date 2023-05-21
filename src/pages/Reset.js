@@ -14,9 +14,10 @@ function Reset() {
     if (loading) return;
     if (user) navigate("/all");
   }, [user, loading]);
+
   return (
-    <div className="reset">
-      <div className="reset__container">
+    <div className="container">
+      <div className="form">
         <input
           type="text"
           className="reset__textBox"
@@ -24,10 +25,7 @@ function Reset() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
-        <button
-          className="reset__btn"
-          onClick={() => sendPasswordReset(email)}
-        >
+        <button className="reset__btn" onClick={() => sendPasswordReset(email)}>
           Send password reset email
         </button>
         <div>
@@ -37,4 +35,5 @@ function Reset() {
     </div>
   );
 }
+
 export default Reset;

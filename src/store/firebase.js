@@ -12,6 +12,7 @@ const firebaseConfig = {
     appId: "1:130874368219:web:19e506a8ade7f4b3786cfe"
   };
 
+  
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -74,9 +75,13 @@ const sendPasswordReset = async (email) => {
     }
   };
 
-const logout = () => {
-  signOut(auth);
-};
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
 
 export {
     auth,

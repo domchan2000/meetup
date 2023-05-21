@@ -34,10 +34,10 @@
 .actions button {
   font: inherit;
   cursor: pointer;
-  color: #77002e;
-  border: 1px solid #77002e;
+  color: #a86d00;
+  border: 1px solid #a86d00;
   background-color: transparent;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 4px;
   margin-left: 50px;
   margin-right: 50px;

@@ -1,19 +1,18 @@
-import {Route, Routes, useLocation } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 
 import AllMeetupsPage from "./pages/AllMeetup";
-import FavoritesPage from "./pages/Favourites";
+import ImportantPage from "./pages/Important";
 import NewMeetupPage from "./pages/NewMeetup";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
 import Layout from "./components/layout/Layout";
-import { GoogleLogin } from '@react-oauth/google';
 
 
 function App() {
-  const location = useLocation();
 
   return (
+    
     <Layout> 
       <Routes>
         <Route path="/" element ={<Login/>} />
@@ -21,10 +20,10 @@ function App() {
         <Route path="/reset" element={<Reset />} />
         <Route path="/all" element={<AllMeetupsPage />} />
         <Route path="/new-meetup" element={<NewMeetupPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/important" element={<ImportantPage />} />
        
       </Routes>
-</Layout>
+    </Layout>
   );
 }
 
