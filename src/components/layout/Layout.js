@@ -1,6 +1,6 @@
 import MainNavigation from './MainNavigation';
 import classes from './Layout.module.css';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Login from '../../pages/Login';
 
 

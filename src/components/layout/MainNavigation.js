@@ -30,7 +30,7 @@ function MainNavigation() {
           </li>
           <li>
             <Link to='/'>            
-              <button className="dashboard__btn" onClick={logout}>Logout</button>
+              <a onClick={logout}>Logout</a>
             </Link>
           </li>
         </ul>

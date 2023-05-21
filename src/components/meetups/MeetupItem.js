@@ -32,8 +32,6 @@ function MeetupItem(props) {
   
     deleteDoc(meetupRef)
       .then(() => {
-        window.alert('Data deleted successfully.');
-        window.location.reload();
       })
       .catch(error => {
         window.alert('Error deleting data: ' + error.message);

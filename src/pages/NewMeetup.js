@@ -16,7 +16,6 @@ function NewMeetupPage() {
       meetupData['userId'] = userId;
 
       await addDoc(collection(db, `users/${userId}/meetups`), meetupData);
-      console.log(user);
       navigate("/");
     } catch (error) {
       console.error("Error adding meetup:", error);

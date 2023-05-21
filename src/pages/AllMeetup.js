@@ -63,14 +63,14 @@ useEffect(() => {
   const isMeetupsEmpty = loadedMeetups.length === 0;
 
   return (
-    <div>
+    <section>
       <h1>All Meetups</h1>
       {isMeetupsEmpty ? (
         <p>No meetups found</p>
       ) : (
         <MeetupList meetups={loadedMeetups} />
       )}
-    </div>
+    </section>
   );
 }
 
