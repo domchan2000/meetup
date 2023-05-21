@@ -7,7 +7,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  background-image: url("https://img.freepik.com/free-photo/businesswomen-caffe_1157-16526.jpg?w=1800&t=st=1684643856~exp=1684644456~hmac=520f8c8f7f0ecfc93bc3069ee77cf6218e732cb57681c9579bf7881c905fdda0");
+  background-image: url('./images/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
