@@ -7,24 +7,24 @@ import Card from "../UI/Card";
 import classes from "./MeetupItem.module.css";
 
 function MeetupItem(props) {
-  const importantCtx = useContext(ImportantContext);
+  // const importantCtx = useContext(ImportantContext);
 
-  const itemIsImportant = importantCtx.itemIsImportant(props.id);
+  // const itemIsImportant = importantCtx.itemIsImportant(props.id);
 
-  function toggleImportantStatusHandler() {
-    if (itemIsImportant) {
-      importantCtx.removeImportant(props.id);
-    } else {
-      importantCtx.addImportant({
-        id: props.id,
-        title: props.title,
-        description: props.description,
-        image: props.image,
-        address: props.address,
-        userId: auth.currentUser.uid
-      });
-    }
-  }
+  // function toggleImportantStatusHandler() {
+  //   if (itemIsImportant) {
+  //     importantCtx.removeImportant(props.id);
+  //   } else {
+  //     importantCtx.addImportant({
+  //       id: props.id,
+  //       title: props.title,
+  //       description: props.description,
+  //       image: props.image,
+  //       address: props.address,
+  //       userId: auth.currentUser.uid
+  //     });
+  //   }
+  // }
 
   async function deleteHandler() {
     const userId = auth.currentUser.uid;
@@ -34,9 +34,9 @@ function MeetupItem(props) {
     try {
       await deleteDoc(meetupRef);
       // Remove the meetup from important as well
-      if (itemIsImportant) {
-        importantCtx.removeImportant(props.id);
-      }
+      // if (itemIsImportant) {
+      //   importantCtx.removeImportant(props.id);
+      // }
     } catch (error) {
       window.alert('Error deleting data: ' + error.message);
     }
@@ -55,7 +55,7 @@ function MeetupItem(props) {
           <p>{props.description}</p>
         </div>
         <div className={classes.actions}>
-          <button onClick={toggleImportantStatusHandler}>{itemIsImportant ? 'Remove from Important' : 'To Important'}</button>
+          {/* <button onClick={toggleImportantStatusHandler}>{itemIsImportant ? 'Remove from Important' : 'To Important'}</button> */}
           <button onClick={()=>deleteHandler('dataIdToDelete')}>Delete Data</button>
         </div>
       </Card>

@@ -20,14 +20,14 @@ function MainNavigation() {
           <li>
             <Link to='/new-meetup'>Add New Meetup</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to='/important'>
               My Importants
               <span className={classes.badge}>
                 {importantCtx.totalImportant}
               </span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/" onClick={logout}>Logout</Link>
           </li>
