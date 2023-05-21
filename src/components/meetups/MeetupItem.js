@@ -25,18 +25,22 @@ function MeetupItem(props) {
     }
   }
 
-  function deleteHandler() {
+  async function deleteHandler() {
     const userId = auth.currentUser.uid;
 
-    const meetupRef = doc(db, `users/${userId}/meetups/${props.id}`);
+    const meetupRef = doc(db, `data/${userId}/meetups/${props.id}`);
   
-    deleteDoc(meetupRef)
-      .then(() => {
-      })
-      .catch(error => {
-        window.alert('Error deleting data: ' + error.message);
-      });
+    try {
+      await deleteDoc(meetupRef);
+      // Remove the meetup from favorites as well
+      if (itemIsFavorite) {
+        favoritesCtx.removeFavorite(props.id);
+      }
+    } catch (error) {
+      window.alert('Error deleting data: ' + error.message);
+    }
   }
+
 
   return (
     <li className={classes.item}>

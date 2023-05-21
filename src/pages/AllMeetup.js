@@ -19,7 +19,7 @@ useEffect(() => {
           return;
         }
 
-        const meetupCollection = collection(db, `users/${userId}/meetups`);
+        const meetupCollection = collection(db, `data/${userId}/meetups`);
         const q = query(meetupCollection);
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {

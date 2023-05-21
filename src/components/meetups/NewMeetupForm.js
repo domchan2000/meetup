@@ -12,7 +12,7 @@ function NewMeetupForm(props) {
   function submitHandler(event) {
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
+    const enteredImage = imageInputRef.current.value || "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg";
     const enteredAddress = addressInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
@@ -34,7 +34,7 @@ function NewMeetupForm(props) {
         </div>
         <div className={classes.control}>
           <label htmlFor="image">Meetup title</label>
-          <input type="url" required id="image" ref={imageInputRef} />
+          <input type="url" id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="address">Meetup title</label>

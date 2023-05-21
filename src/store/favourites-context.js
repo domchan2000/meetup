@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../store/firebase.js";
 
 const FavoritesContext = createContext({
@@ -19,7 +19,7 @@ export function FavoritesContextProvider(props) {
     const fetchFavorites = async () => {
       if (user) {
         try {
-          const userDocRef = doc(db, "users", user.uid);
+          const userDocRef = doc(db, "data", user.uid);
           const userDocSnap = await getDoc(userDocRef);
 
           if (userDocSnap.exists()) {
@@ -57,10 +57,26 @@ export function FavoritesContextProvider(props) {
     });
   }
 
-  function removeFavoriteHandler(meetupId) {
+  async function removeFavoriteHandler(meetupId) {
     setUserFavorites((prevUserFavorites) => {
-      return prevUserFavorites.filter((meetup) => meetup.id !== meetupId);
+      const updatedFavorites = prevUserFavorites.filter(
+        (meetup) => meetup.id !== meetupId
+      );
+      // Update Firestore with the updated favorites array
+      updateFavoriteInFirestore(updatedFavorites);
+      return updatedFavorites;
     });
+  }
+
+  async function updateFavoriteInFirestore(updatedFavorites) {
+    if (user) {
+      try {
+        const userDocRef = doc(db, "data", user.uid);
+        await updateDoc(userDocRef, { favorites: updatedFavorites });
+      } catch (error) {
+        console.error("Error updating favorites in Firestore:", error);
+      }
+    }
   }
 
   function itemIsFavoriteHandler(meetupId) {
