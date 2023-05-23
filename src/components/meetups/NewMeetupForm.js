@@ -33,7 +33,7 @@ function NewMeetupForm(props) {
           <input type="text" required id="titel" ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="image">Do you have an image of that location?</label>
+          <label htmlFor="image">Do you have an image of that location? (Optional)</label>
           <input type="url" id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
