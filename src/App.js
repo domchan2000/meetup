@@ -20,7 +20,7 @@ function App() {
         <Route path="/reset" element={<Reset />} />
         <Route path="/all" element={<AllMeetupsPage />} />
         <Route path="/new-meetup" element={<NewMeetupPage />} />
-        <Route path="/important" element={<ImportantPage />} />
+        {/* <Route path="/important" element={<ImportantPage />} /> */}
        
       </Routes>
     </Layout>
